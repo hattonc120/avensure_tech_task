@@ -36,7 +36,7 @@ class Post
 
     public function getCategoryColor($incCategory)
     {
-        $storedJsonData = file_get_contents('data/categories.json');
+        $storedJsonData = file_get_contents('./data/categories.json');
         $storedDataArray = json_decode($storedJsonData, true);
         $color = "";
         if ($storedDataArray != null) {
@@ -64,7 +64,7 @@ class Post
                     <div class="buttonContainer d-flex justify-content-around">
                         <button class="btn bg-dark text-light mx-2"><i class="fas fa-glasses" title="read post" data-bs-toggle="modal" data-bs-target="#postDisplayModal" onclick="displayPost($this->id)"></i></button>
                         <button class="btn bg-dark text-light mx-2"><i class="fas fa-pencil-alt" title="edit post" data-bs-toggle="modal" data-bs-target="#postModal" onclick="populateAndDisplayPostForm($this->id)"></i></button>                        
-                        <form action="PostController.php" method="post" style="">
+                        <form action="./Http/Controllers/PostController.php" method="post" style="">
                             <input type="text" name="id" value="$this->id" hidden>
                             <input type="text" name="action" value="delete" hidden>
                             <button type="submit" class="btn bg-dark text-light mx-2" onclick="return confirm('Click ok to delete the post!')">

@@ -1,10 +1,6 @@
 <?php
 
-/* var_dump($_POST['action']);
-return; */
-
-//var_dump($_POST['action']); return "qwerty";
-//echo "Hello Wilbur";
+$data_url = dirname(__DIR__, 2) . '/data/posts.json';
 
 switch ($_POST['action']) {
     case 'create':
@@ -12,20 +8,20 @@ switch ($_POST['action']) {
         $description = $_POST['description'];
         $category = $_POST['category'];
         $newPost = array("id" => getNextPostId(), "title" => "$title", "description" => "$description", "timestamp" => time(), "category" => "$category");
-        $storedJsonData = file_get_contents('data/posts.json');
+        $storedJsonData = file_get_contents($GLOBALS['data_url']);
         $storedDataArray = json_decode($storedJsonData, true);
         if ($storedDataArray == null) {
             $storedDataArray = array();
         }
         array_unshift($storedDataArray, $newPost);
         $jsonData = json_encode($storedDataArray);
-        file_put_contents('data/posts.json', $jsonData);
+        file_put_contents($GLOBALS['data_url'], $jsonData);
         header('Location: ' . $_SERVER['HTTP_REFERER']);
         break;
     case 'delete':
         //echo "qwerty4335463546453645"; return;
         $id = $_POST['id'];
-        $storedJsonData = file_get_contents('data/posts.json');
+        $storedJsonData = file_get_contents($GLOBALS['data_url']);
         $storedDataArray = json_decode($storedJsonData, true);
         if ($storedDataArray == null) {
             $storedDataArray = array();
@@ -38,13 +34,13 @@ switch ($_POST['action']) {
             }
         }
         $jsonData = json_encode($storedDataArray);
-        file_put_contents('data/posts.json', $jsonData);
+        file_put_contents($GLOBALS['data_url'], $jsonData);
         header('Location: ' . $_SERVER['HTTP_REFERER']);
         break;
     case 'edit':
     case 'show':
         $id = $_POST['id'];
-        $storedJsonData = file_get_contents('data/posts.json');
+        $storedJsonData = file_get_contents($GLOBALS['data_url']);
         $storedDataArray = json_decode($storedJsonData, true);
         if ($storedDataArray == null) {
             $storedDataArray = array();
@@ -60,14 +56,12 @@ switch ($_POST['action']) {
         }
         break;
     case 'update':
-        /* header("Location: http://www.google.com");
-        exit(); */
         $id = intval($_POST['id']);
         //var_dump($id);
         $title = $_POST['title'];
         $description = $_POST['description'];
         $category = $_POST['category'];
-        $storedJsonData = file_get_contents('data/posts.json');
+        $storedJsonData = file_get_contents($GLOBALS['data_url']);
         $storedDataArray = json_decode($storedJsonData, true);
         if ($storedDataArray == null) {
             $storedDataArray = array();
@@ -82,7 +76,7 @@ switch ($_POST['action']) {
                 //$tempArr[] = $storedDataArray[$i];
                 //echo json_encode($storedDataArray[$i]);
                 $jsonData = json_encode($storedDataArray);
-                file_put_contents('data/posts.json', $jsonData);
+                file_put_contents($GLOBALS['data_url'], $jsonData);
                 break;
             }
         }
@@ -94,7 +88,7 @@ switch ($_POST['action']) {
 
 function getNextPostId()
 {
-    $storedJsonData = file_get_contents('data/posts.json');
+    $storedJsonData = file_get_contents($GLOBALS['data_url']);
     $storedDataArray = json_decode($storedJsonData, true);
     $maxId = 0;
     if ($storedDataArray != null) {

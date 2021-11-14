@@ -27,7 +27,7 @@ Since the task suggested a styling framework I chose to use Bootstrap together w
 This project is perhaps minimally responsive in the sense that it has been styled to present content according to screen orientation. In a real project I would presume that more tested would be needed to ensure the project present correctly across all devices.
 
 <strong>UX/UI</strong><br>
-An option to add an image to each post would have improved the overall visual appeal of the blog. I am happy with my use of icons (fontawesome) and colour coded categories.
+An option to add an image to each post would have improved the overall visual appeal of the blog. I am happy with my use of icons (fontawesome) and colour coded categories. I suspect there is more to UX/UI than icons and colours tho :)
 
 <strong>Browser Tools</strong><br>
 I used chrome to help investigate any bugs using the elements, console, network tabs

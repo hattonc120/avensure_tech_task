@@ -2,7 +2,6 @@ document.addEventListener(
   "DOMContentLoaded",
   function () {
     filterPosts("post");
-    console.log("qwerty88888");
   },
   false
 );
